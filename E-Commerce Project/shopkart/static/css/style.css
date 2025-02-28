@@ -1,25 +1,23 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap');
 
-html{
+/* html {
     font-size: 14px;
 }
 
-body{
+body {
     font-family: "Noto Sans", sans-serif;
 }
 
-a{
+a {
     text-decoration: none;
-}
+} */
 
-.carousel-inner .corousel-item img{
-     object-fit: cover;
+.carousel-item img {
+    object-fit: cover;
     object-position: top;
     height: 60vh;
-    overflow: hidden;
-   
-    height: 50px;
-    width: 50px;   
+    overflow: hidden;   
 } 
+
 
