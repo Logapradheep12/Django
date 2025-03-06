@@ -14,7 +14,7 @@ def collections(request):
 
 def collectionsview(request,name):
     if(Catagory.objects.filter(name=name,status=0)):
-        products=Catagory.objects.filter(Catagory__name=name)
+        products=Catagory.objects.filter(Category__name=name)
         return render(request,"index.html",{"products":products,"category_name":name})
     else:
         messages.warning(request," No Such Category Found ")
