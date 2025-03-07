@@ -1,4 +1,6 @@
+from itertools import product
 from django.db import models
+from django.contrib.auth.models import User
 import datetime
 import os
 
@@ -22,8 +24,8 @@ class Product(models.Model):
     category = models.ForeignKey(Catagory,on_delete=models.CASCADE)
     name = models.CharField(max_length=150, null=False, blank=False)
     vendor = models.CharField(max_length=150, null=False, blank=False)
-    product_imgage = models.ImageField(upload_to=getFileName) 
-    quality = models.IntegerField(null=False, blank=False)
+    product_image = models.ImageField(upload_to=getFileName) 
+    quantity = models.IntegerField(null=False, blank=False)
     original_price = models.IntegerField(null=False, blank=False)
     selling_price = models.IntegerField(null=False, blank=False)
     description = models.TextField(max_length=150, null=False, blank=False)
@@ -33,3 +35,20 @@ class Product(models.Model):
     
     def __str__(self):
         return self.name
+
+
+class Cart(models.Model):
+  user=models.ForeignKey(User,on_delete=models.CASCADE)
+  product=models.ForeignKey(Product,on_delete=models.CASCADE)
+  product_qty=models.IntegerField(null=False,blank=False)
+  created_at=models.DateTimeField(auto_now_add=True)
+ 
+  @property
+  def total_cost(self):
+    return self.product_qty*self.product.selling_price
+ 
+class Favourite(models.Model):
+	user=models.ForeignKey(User,on_delete=models.CASCADE)
+	product=models.ForeignKey(Product,on_delete=models.CASCADE)
+	created_at=models.DateTimeField(auto_now_add=True)
+ 
